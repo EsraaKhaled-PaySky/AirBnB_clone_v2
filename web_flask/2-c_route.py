@@ -1,28 +1,33 @@
 #!/usr/bin/python3
-"""
-starts a Flask web application
-"""
+"""Starts a Flask application on 0.0.0.0:5000"""
+
 
 from flask import Flask
+
+
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def index():
-    """returns Hello HBNB!"""
-    return 'Hello HBNB!'
+def hello():
+    """Returns a simple greeting page"""
+
+    return ('Hello HBNB!')
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """returns HBNB"""
-    return 'HBNB'
+    """Returns a page containing the string 'HBNB'"""
+
+    return ('HBNB')
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def cisfun(text):
-    """display “C ” followed by the value of the text variable"""
-    return 'C ' + text.replace('_', ' ')
+def dear_c(text):
+    """Returns a page about C"""
+
+    return ("C {}".format(text.replace('_', ' ')))
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(debug=True, host='0.0.0.0')
